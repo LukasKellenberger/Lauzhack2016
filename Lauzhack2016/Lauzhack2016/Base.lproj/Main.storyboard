@@ -30,11 +30,50 @@
                     </view>
                     <connections>
                         <segue destination="Ywf-t4-0kY" kind="presentation" identifier="codescanned" id="qEX-xq-vVr"/>
+                        <segue destination="NSb-Dj-dDF" kind="presentation" identifier="opensettings" id="2Fu-Um-Tcd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-79.200000000000003" y="138.98050974512745"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="csG-ea-AF9">
+            <objects>
+                <viewController id="NSb-Dj-dDF" customClass="SettingsViewController" customModule="Lauzhack2016" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MtE-SA-AP5"/>
+                        <viewControllerLayoutGuide type="bottom" id="8C3-gI-nq5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ze5-4V-E9h">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vsq-OR-qRM">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Settings" id="cr1-5a-88i">
+                                        <barButtonItem key="rightBarButtonItem" style="plain" id="1Xa-Yk-dLI">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kjO-OV-G09">
+                                                <rect key="frame" x="320" y="2" width="39" height="39"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Close"/>
+                                                <connections>
+                                                    <action selector="close:" destination="NSb-Dj-dDF" eventType="touchDown" id="Tcr-OU-ZU0"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l7K-XM-uld" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="386" y="-738"/>
         </scene>
         <!--Modal View Controller-->
         <scene sceneID="oOr-GF-lGl">

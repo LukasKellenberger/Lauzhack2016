@@ -11,6 +11,8 @@ import AVFoundation
 
 class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
 
+    let SETTINGS_SIZE = 50.0
+    let SETTINGS_MARGIN = 25.0
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
     var foundCode: String!
@@ -55,6 +57,22 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         view.layer.addSublayer(previewLayer);
         
         captureSession.startRunning();
+        
+        addButtons()
+    }
+    
+    func addButtons() {
+        let image = UIImage(named: "settings.png")! as UIImage
+        let viewWidth = Double(view.bounds.width)
+        let button = UIButton.init(frame: CGRect.init(x: viewWidth - SETTINGS_SIZE - SETTINGS_MARGIN, y: SETTINGS_MARGIN, width: SETTINGS_SIZE, height: SETTINGS_SIZE))
+        button.setImage(image, for: UIControlState.normal)
+        button.backgroundColor = UIColor.white
+        button.addTarget(self, action: #selector(ViewController.openSettings), for: UIControlEvents.touchDown)
+        view.addSubview(button);
+    }
+    
+    func openSettings() {
+        self.performSegue(withIdentifier: "opensettings", sender: self)
     }
     
     func failed() {
