@@ -108,10 +108,9 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     @IBAction func unwindToContainerVC(segue: UIStoryboardSegue) {}
     
-    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if(segue.identifier == "codescanned") {
-            
             let modalViewController = (segue.destination as! ModalViewController)
             modalViewController.code = foundCode
         }

@@ -11,9 +11,11 @@ import UIKit
 
 class ModalViewController: UIViewController {
     var code: String!
+    var product: Product!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        product = Product(barcode: code)
     }
     
     override func didReceiveMemoryWarning() {
