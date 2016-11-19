@@ -1,4 +1,6 @@
-tignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
+.gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
+
+Lauzhack2016/Lauzhack2016.xcodeproj/project.pbxproj
 
 ## Build generated
 build/
