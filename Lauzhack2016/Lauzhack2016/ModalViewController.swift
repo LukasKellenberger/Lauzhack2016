@@ -25,11 +25,11 @@ class ModalViewController: UIViewController {
                 }
             } else {
                 DispatchQueue.main.sync {
-                if self.product.hasBeenFound() {
-                    self.renderProduct()
-                } else {
-                    self.renderNotFound()
-                }
+                    if self.product.hasBeenFound() {
+                        self.renderProduct()
+                    } else {
+                        self.renderNotFound()
+                    }
                 }
             }
         })

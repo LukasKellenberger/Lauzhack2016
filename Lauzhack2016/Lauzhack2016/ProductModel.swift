@@ -20,9 +20,7 @@ class Product {
             
             opt.start { response in
                 if let err = response.error {
-                    print("error: \(err.localizedDescription)")
                     on_load()
-                    return //also notify app of failure as needed
                 }
                 self.product_json =  JSON(data: response.data)
                 self.loaded = true
