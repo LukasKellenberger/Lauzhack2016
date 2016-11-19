@@ -11,22 +11,29 @@ import SwiftyJSON
 import SwiftHTTP
 
 class Product {
+    var product_json: JSON = JSON(data: Data())
+    var loaded: Bool = false
     
-    
-    init(barcode: String) {
+    init(barcode: String, on_load: @escaping (() -> Void)) {
         do {
             let opt = try HTTP.GET("https://www.openfood.ch/api/v1/products?barcodes[]=" + barcode + "&locale=en")
+            
             opt.start { response in
                 if let err = response.error {
                     print("error: \(err.localizedDescription)")
+                    on_load()
                     return //also notify app of failure as needed
                 }
-                print("opt finished: \(response.description)")
-                //print("data is: \(response.data)") access the response of the data with response.data
+                self.product_json =  JSON(data: response.data)
+                self.loaded = true
+                on_load()
             }
-        } catch let error {
-            print("got an error creating the request: \(error)")
+        } catch {
+            return
         }
-        
+    }
+    
+    func hasBeenFound() -> Bool {
+        return product_json["data"][0].exists()
     }
 }
