@@ -93,12 +93,7 @@ class Product {
 
 class Allergens {
     static let sharedInstance = Allergens()
-    var allergens: JSON
-
-    init() {
-        let text = try! String(contentsOfFile: Bundle.main.path(forResource: "allergies", ofType: "json")!)
-        allergens = JSON(text)
-    }
+    var allergens: JSON = JSON(data: try! Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "allergies", ofType: "json")!)))
     
     var allergies: Array<String> = ["soya", "gluten", "blé", "lait", "crustacés", "oeufs", "arachides", "noix", "moutarde", "sésame"]
     
@@ -106,7 +101,7 @@ class Allergens {
         var allergen_array: Array<String> = Array()
         for (key, subJson):(String, JSON) in allergens {
             for (_, subsubJson):(String, JSON) in subJson {
-                if (ingredient == subsubJson.string) {
+                if (ingredient.contains(subsubJson.string!)) {
                     allergen_array.append(key)
                 }
             }
