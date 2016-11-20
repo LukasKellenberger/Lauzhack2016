@@ -66,7 +66,6 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         let viewWidth = Double(view.bounds.width)
         let button = UIButton.init(frame: CGRect.init(x: viewWidth - SETTINGS_SIZE - SETTINGS_MARGIN, y: SETTINGS_MARGIN, width: SETTINGS_SIZE, height: SETTINGS_SIZE))
         button.setImage(image, for: UIControlState.normal)
-        button.backgroundColor = UIColor.white
         button.addTarget(self, action: #selector(ViewController.openSettings), for: UIControlEvents.touchDown)
         view.addSubview(button);
     }
