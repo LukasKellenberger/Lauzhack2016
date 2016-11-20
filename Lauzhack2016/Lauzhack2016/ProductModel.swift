@@ -45,8 +45,8 @@ class Product {
         } else {
             return false
         }
-        if (product_json["data"][0]["attributes"]["ingredients"].exists()) {
-            if let ingr = product_json["data"][0]["attributes"]["ingredients"].string {
+        if (product_json["data"][0]["attributes"]["ingredients-translations"]["fr"].exists()) {
+            if let ingr = product_json["data"][0]["attributes"]["ingredients-translations"]["fr"].string {
                 ingredients = Product.ingredientTokenizer(string: ingr)
             } else {
                 return false
@@ -60,7 +60,32 @@ class Product {
     }
     
     class func ingredientTokenizer(string: String) -> Array<String> {
-        return string.components(separatedBy: ", ")
+        var parenCount = 0
+        
+        var i = 0;
+        var ingre:Array<String> = []
+        var currentStr = ""
+
+        while i < string.characters.count {
+            let index = string.index(string.startIndex, offsetBy: i)
+            let c = string[index]
+            if(c == "(") {
+                parenCount = parenCount + 1
+                currentStr.append(c)
+            } else if(c == ")") {
+                parenCount = parenCount - 1;
+                currentStr.append(c)
+            } else if (parenCount == 0 && c == ","){
+                ingre.append(currentStr)
+                currentStr = ""
+                i = i+1
+            } else {
+                currentStr.append(c)
+            }
+            i = i + 1
+        }
+        ingre.append(currentStr)
+        return ingre
     }
     
 }
@@ -104,3 +129,4 @@ class Allergens {
         return productAllergies
     }
 }
+
