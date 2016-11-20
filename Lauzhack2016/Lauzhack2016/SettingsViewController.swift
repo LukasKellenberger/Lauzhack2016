@@ -28,7 +28,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     static let ALL_DEFAULT = false
     static let ALL_INDEX = 0;
     static let DEFAULT = false
-    static let ALLERGY_KEYS = ["gluten", "seafood", "peanuts"]
+    static let ALLERGY_KEYS = Allergens.sharedInstance.allergies
     
     let settings = UserDefaults.standard
 

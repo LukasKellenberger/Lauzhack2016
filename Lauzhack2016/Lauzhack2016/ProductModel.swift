@@ -75,7 +75,7 @@ class Product {
             } else if(c == ")") {
                 parenCount = parenCount - 1;
                 currentStr.append(c)
-            } else if (parenCount == 0 && c == ","){
+            } else if (parenCount == 0 && c == "," && string[string.index(string.startIndex, offsetBy: i+1)] == " "){
                 ingre.append(currentStr)
                 currentStr = ""
                 i = i+1
