@@ -29,7 +29,7 @@ class ModalViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        product = Product(barcode: "80135463", on_load: {
+        product = Product(barcode: code, on_load: {
             if !self.product.loaded {
                 DispatchQueue.main.sync {
                     self.renderFail()
