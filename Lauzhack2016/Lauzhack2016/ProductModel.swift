@@ -34,4 +34,12 @@ class Product {
     func hasBeenFound() -> Bool {
         return product_json["data"][0].exists()
     }
+    
+    func getName() -> String {
+        return product_json["data"][0]["attributes"]["name"].string!
+    }
+    
+    func getIngredients() -> Array<Any> {
+        return product_json["data"][0]["attributes"]["ingredients"].array!
+    }
 }

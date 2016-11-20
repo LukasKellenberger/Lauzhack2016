@@ -13,8 +13,9 @@ class ModalViewController: UIViewController {
     var code: String!
     var product: Product!
     
+    @IBOutlet weak var problemText: UILabel!
     @IBOutlet weak var productName: UINavigationItem!
-    @IBOutlet weak var problemText: UITextField!
+    @IBOutlet weak var ingredientsHeader: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +50,8 @@ class ModalViewController: UIViewController {
     }
     
     func renderProduct() {
-        productName.title = "Meh"
+        productName.title = product.getName()
+        ingredientsHeader.isHidden = false
     }
 
     @IBAction func close(_ sender: Any) {
