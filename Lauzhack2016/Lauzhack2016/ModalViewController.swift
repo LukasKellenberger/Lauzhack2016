@@ -13,9 +13,19 @@ class ModalViewController: UIViewController {
     var code: String!
     var product: Product!
     
-    @IBOutlet weak var problemText: UILabel!
     @IBOutlet weak var productName: UINavigationItem!
+    
+    @IBOutlet weak var problemText: UILabel!
 
+
+    @IBOutlet weak var allergiesHeader: UILabel!
+
+    @IBOutlet weak var alergies: UIStackView!
+    
+    @IBOutlet weak var ingredientLabel: UILabel!
+    
+    @IBOutlet weak var ingredent: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         product = Product(barcode: code, on_load: {
@@ -50,10 +60,47 @@ class ModalViewController: UIViewController {
     
     func renderProduct() {
         if product.hasData() {
-            productName.title = product.name!
+            setProduct()
         } else {
             problemText.text = "We don't have enough information on this product!"
         }
+    }
+    
+    func setProduct() {
+
+        productName.title = product.name!
+        
+        allergiesHeader.isHidden = false
+        
+        problemText.isHidden = true
+        
+        setAllergies()
+        
+        ingredientLabel.isHidden = false
+        
+        ingredent.isHidden = false
+        ingredent.lineBreakMode = .byWordWrapping
+        ingredent.numberOfLines = 0
+        let alergens: Set<String> = ["Zucker", "Aroma"]
+        setIngredients(ingredients: product.ingredients!, alergens: alergens)
+        
+        
+    }
+    
+    func setAllergies() {
+        
+    }
+    
+    func setIngredients(ingredients: Array<String>, alergens: Set<String>) {
+        let ingredientString = ingredients.joined(separator: ", ")
+        let attribute = NSMutableAttributedString.init(string: ingredientString)
+        let ingredientNSString = (ingredientString as NSString)
+        for alergen in alergens {
+            let range = ingredientNSString.range(of: alergen)
+            attribute.addAttribute(NSForegroundColorAttributeName, value: UIColor.red, range: range)
+        }
+        ingredent.attributedText = attribute
+
     }
 
     @IBAction func close(_ sender: Any) {

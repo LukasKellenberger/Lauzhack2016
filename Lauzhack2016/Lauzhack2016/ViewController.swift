@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 
 class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
-
+    
     let SETTINGS_SIZE = 50.0
     let SETTINGS_MARGIN = 25.0
     var captureSession: AVCaptureSession!

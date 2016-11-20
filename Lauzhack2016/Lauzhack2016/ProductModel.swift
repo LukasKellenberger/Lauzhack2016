@@ -23,6 +23,7 @@ class Product {
             
             opt.start { response in
                 if let err = response.error {
+                    print(err)
                     on_load()
                 }
                 self.product_json =  JSON(data: response.data)
@@ -45,11 +46,21 @@ class Product {
             return false
         }
         if (product_json["data"][0]["attributes"]["ingredients"].exists()) {
-            ingredients = product_json["data"][0]["attributes"]["name"].arrayValue
+            if let ingr = product_json["data"][0]["attributes"]["ingredients"].string {
+                ingredients = Product.ingredientTokenizer(string: ingr)
+            } else {
+                return false
+            }
+
+
         } else {
             return false
         }
         return true
+    }
+    
+    class func ingredientTokenizer(string: String) -> Array<String> {
+        return string.components(separatedBy: ", ")
     }
     
 }
