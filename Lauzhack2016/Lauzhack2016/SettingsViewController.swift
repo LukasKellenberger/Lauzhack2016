@@ -9,34 +9,41 @@
 import Foundation
 import UIKit
 
+class UISwitchWithId: UISwitch {
+    var key: String?
+    
+}
+
 class SettingsCell: UITableViewCell {
 
     var settingKey: String = ""
     @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var `switch`: UISwitch!
+    @IBOutlet weak var `switch`: UISwitchWithId!
     
 }
 
 class SettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    let ALL_KEY = "all"
-    let ALL_DEFAULT = true
-    let ALL_INDEX = 0;
-    let DEFAULT = false
-    let ALLERGY_KEYS = ["gluten", "seafood", "peanuts"]
+    static let ALL_KEY = "all"
+    static let ALL_DEFAULT = false
+    static let ALL_INDEX = 0;
+    static let DEFAULT = false
+    static let ALLERGY_KEYS = ["gluten", "seafood", "peanuts"]
     
     let settings = UserDefaults.standard
 
     @IBOutlet weak var ttableView: UITableView!
     
     var allValue: Bool?
+    var currentRow: Int?
+    var currentCell: SettingsCell?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         ttableView.dataSource = self
         ttableView.delegate = self
         
-        allValue = loadValue(key: ALL_KEY)
+        allValue = loadValue(key: SettingsViewController.ALL_KEY)
     }
     
     
@@ -49,7 +56,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ALLERGY_KEYS.count + 1
+        return SettingsViewController.ALLERGY_KEYS.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -57,33 +64,40 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         let index = indexPath.row
         
+        currentRow = index
+        currentCell = cell;
         
-        let allergyKey = index == 0 ? ALL_KEY : ALLERGY_KEYS[index-1]
+        let allergyKey = index == 0 ? SettingsViewController.ALL_KEY : SettingsViewController.ALLERGY_KEYS[index-1]
         
         let isOn = loadValue(key: allergyKey)
-        cell.switch.addTarget(self, action: #selector(SettingsViewController.cellSwitchChanged(row:index, cell:cell)), for: UIControlEvents.valueChanged)
+        cell.settingKey = allergyKey
+        cell.switch.key = allergyKey
+        cell.switch.addTarget(self, action: #selector(self.switchValueChanged(swch:)), for: UIControlEvents.valueChanged)
         cell.label?.text = allergyKey
         cell.switch.setOn(isOn, animated: false)
-        if(allValue! && indexPath.row != 0) {
-            cell.switch.isEnabled = false
-        }
+        cell.switch.isEnabled = indexPath.row == SettingsViewController.ALL_INDEX || !allValue!
+
         return cell
     }
     
-    func cellSwitchChanged(row: Int, cell: SettingsCell) {
-        if(row == ALL_INDEX) {
+    func switchValueChanged(swch: UISwitchWithId) {
+        let key = swch.key!
+        let value = swch.isOn
+        
+        if(key == SettingsViewController.ALL_KEY) {
+            allValue = value
             ttableView.reloadData()
         }
         
-        storeValue(key: cell.settingKey, isOn: cell.switch.isOn)
+        storeValue(key: key, isOn: value)
     }
-    
+
     func storeValue(key: String, isOn: Bool) {
-        #imageLiteral(resourceName: "settings").setValue(isOn, forKey: key)
+        settings.setValue(isOn, forKey: key)
     }
     
     func loadValue(key: String) -> Bool {
-        let defaultValue = key == ALL_KEY ? ALL_DEFAULT : DEFAULT
+        let defaultValue = key == SettingsViewController.ALL_KEY ? SettingsViewController.ALL_DEFAULT : SettingsViewController.DEFAULT
         
         if(settings.object(forKey: key) != nil) {
             return settings.bool(forKey: key)

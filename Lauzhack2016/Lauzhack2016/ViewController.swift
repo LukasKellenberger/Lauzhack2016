@@ -62,7 +62,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     }
     
     func addButtons() {
-        let image = UIImage(named: "settings.png")! as UIImage
+        let image = UIImage(named: "settingsIcon.png")! as UIImage
         let viewWidth = Double(view.bounds.width)
         let button = UIButton.init(frame: CGRect.init(x: viewWidth - SETTINGS_SIZE - SETTINGS_MARGIN, y: SETTINGS_MARGIN, width: SETTINGS_SIZE, height: SETTINGS_SIZE))
         button.setImage(image, for: UIControlState.normal)
