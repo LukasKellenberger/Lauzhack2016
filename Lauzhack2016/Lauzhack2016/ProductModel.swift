@@ -13,6 +13,9 @@ import SwiftHTTP
 class Product {
     var product_json: JSON = JSON(data: Data())
     var loaded: Bool = false
+    var name: String?
+    var ingredients: Array<Any>?
+    
     
     init(barcode: String, on_load: @escaping (() -> Void)) {
         do {
@@ -35,11 +38,29 @@ class Product {
         return product_json["data"][0].exists()
     }
     
-    func getName() -> String {
-        return product_json["data"][0]["attributes"]["name"].string!
+    func hasData() -> Bool {
+        if (product_json["data"][0]["attributes"]["name"].exists() && product_json["data"][0]["attributes"]["name"].string != nil) {
+            name = product_json["data"][0]["attributes"]["name"].stringValue
+        } else {
+            return false
+        }
+        if (product_json["data"][0]["attributes"]["ingredients"].exists()) {
+            ingredients = product_json["data"][0]["attributes"]["name"].arrayValue
+        } else {
+            return false
+        }
+        return true
     }
     
-    func getIngredients() -> Array<Any> {
-        return product_json["data"][0]["attributes"]["ingredients"].array!
+}
+
+
+class Allergens {
+    static let sharedInstance = Allergens()
+    var allergens: JSON
+
+    init() {
+        let text = try! String(contentsOfFile: Bundle.main.path(forResource: "allergies.json", ofType: "txt")!)
+        allergens = JSON(text)
     }
 }

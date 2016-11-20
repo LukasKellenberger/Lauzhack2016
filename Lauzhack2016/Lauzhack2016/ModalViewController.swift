@@ -15,7 +15,6 @@ class ModalViewController: UIViewController {
     
     @IBOutlet weak var problemText: UILabel!
     @IBOutlet weak var productName: UINavigationItem!
-    @IBOutlet weak var ingredientsHeader: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +33,7 @@ class ModalViewController: UIViewController {
                 }
             }
         })
+        // print(Allergens.sharedInstance.allergens)
     }
     
     override func didReceiveMemoryWarning() {
@@ -50,8 +50,11 @@ class ModalViewController: UIViewController {
     }
     
     func renderProduct() {
-        productName.title = product.getName()
-        ingredientsHeader.isHidden = false
+        if product.hasData() {
+            productName.title = product.name!
+        } else {
+            problemText.text = "We don't have enough information on this product!"
+        }
     }
 
     @IBAction func close(_ sender: Any) {
