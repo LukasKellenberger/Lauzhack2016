@@ -89,7 +89,12 @@ class ModalViewController: UIViewController, UITableViewDataSource, UITableViewD
             getActivatedAllergies()
             setProduct()
         } else {
+            if (product.name != nil) {
+                productName.title = product.name!
+            }
             problemText.text = "We don't have enough information on this product!"
+            problemText.lineBreakMode = .byWordWrapping
+            problemText.numberOfLines = 0
         }
     }
     

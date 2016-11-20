@@ -58,7 +58,7 @@
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kjO-OV-G09">
                                                 <rect key="frame" x="320" y="2" width="39" height="39"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Close"/>
+                                                <state key="normal" title="Save"/>
                                                 <connections>
                                                     <action selector="close:" destination="NSb-Dj-dDF" eventType="touchDown" id="Tcr-OU-ZU0"/>
                                                 </connections>
