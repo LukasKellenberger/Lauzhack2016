@@ -54,7 +54,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Settings" id="cr1-5a-88i">
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="1Xa-Yk-dLI">
+                                        <barButtonItem key="rightBarButtonItem" id="1Xa-Yk-dLI">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kjO-OV-G09">
                                                 <rect key="frame" x="320" y="2" width="39" height="39"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -76,7 +76,7 @@
                                         <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hRB-pl-Gj5" id="JpV-Mx-Tdz">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohn-8F-ah0">
@@ -128,7 +128,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Product" id="lGs-oe-XL8">
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="keA-SM-GrF">
+                                        <barButtonItem key="rightBarButtonItem" id="keA-SM-GrF">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="NLx-uq-8Ap">
                                                 <rect key="frame" x="320" y="7" width="39" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
@@ -165,11 +165,9 @@
                         <outlet property="ingredientsHeader" destination="daz-X0-3CB" id="ZN8-uC-Ymh"/>
                         <outlet property="problemText" destination="Qca-Us-2Kb" id="TqY-5W-myZ"/>
                         <outlet property="productName" destination="lGs-oe-XL8" id="TGp-wI-GZM"/>
-                        <segue destination="Sch-bj-wvU" kind="unwind" unwindAction="unwindToContainerVCWithSegue:" id="YTk-Gk-tJg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nua-Vt-V9e" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="Sch-bj-wvU" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="816.79999999999995" y="128.18590704647679"/>
         </scene>
