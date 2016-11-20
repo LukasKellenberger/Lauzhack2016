@@ -33,7 +33,6 @@ class ModalViewController: UIViewController {
                 }
             }
         })
-        // print(Allergens.sharedInstance.allergens)
     }
     
     override func didReceiveMemoryWarning() {
